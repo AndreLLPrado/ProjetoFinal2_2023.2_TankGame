@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destructionDelay: 5
+  damage: 1
 --- !u!135 &7260345036555461736
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6291917199858499660}
   - component: {fileID: 2545790123108667243}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -60,9 +60,9 @@ GameObject:
   - component: {fileID: 1267961548049560639}
   - component: {fileID: 8164118376676172048}
   - component: {fileID: 945032473197630868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,6 +181,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: tanquinho_base_verde
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7951190c72152074d8d793083a55be86, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 7951190c72152074d8d793083a55be86, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7951190c72152074d8d793083a55be86, type: 3}
 --- !u!1 &3971098279785974284 stripped
@@ -259,6 +267,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c253e64c82b5e94dbad557a5e486a83, type: 3}
       propertyPath: m_Name
       value: tanquinho_topo_verde
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c253e64c82b5e94dbad557a5e486a83, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 4c253e64c82b5e94dbad557a5e486a83, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c253e64c82b5e94dbad557a5e486a83, type: 3}

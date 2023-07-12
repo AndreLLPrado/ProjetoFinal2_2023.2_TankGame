@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public float destructionDelay;
     [SerializeField]
@@ -17,16 +17,11 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("bullet colide with: " + collision.gameObject.name + " tag: " + collision.gameObject.tag);
-        if(collision.gameObject.tag == "Enemy")
-        {
-            if (collision.gameObject.GetComponent<Enemy>() != null)
-            {
-                collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
-            }
-        }
+        // Debug.Log("Enemy bullet colide with: " + collision.gameObject.name + " tag: " + collision.gameObject.tag);
+
         Destroy(gameObject);
     }
 }
