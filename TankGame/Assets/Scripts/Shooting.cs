@@ -19,20 +19,23 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
-        {
-            nextFireTime = Time.time + fireRate;
-
-            Vector3 mousePosition = Input.mousePosition;
-            Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit))
+        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver()) 
+        { 
+            if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
             {
-                Vector3 direction = hit.point - transform.position;
+                nextFireTime = Time.time + fireRate;
 
-                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-                bulletRigidbody.velocity = direction.normalized * bulletSpeed;
+                Vector3 mousePosition = Input.mousePosition;
+                Ray ray = mainCamera.ScreenPointToRay(mousePosition);
+
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    Vector3 direction = hit.point - transform.position;
+
+                    GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                    Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+                    bulletRigidbody.velocity = direction.normalized * bulletSpeed;
+                }
             }
         }
     }

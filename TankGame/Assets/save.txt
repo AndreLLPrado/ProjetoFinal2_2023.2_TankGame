@@ -1,0 +1,6 @@
+score
+0
+bestTime
+0
+cash
+99999999

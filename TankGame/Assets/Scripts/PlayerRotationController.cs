@@ -12,7 +12,8 @@ public class PlayerRotationController : MonoBehaviour
 
     void Update()
     {
-         RotationPlayer();
+        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver())
+            RotationPlayer();
     }
 
     private void RotationPlayer()

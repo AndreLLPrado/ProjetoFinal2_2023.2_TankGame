@@ -15,7 +15,10 @@ public class PlayerMoviment : MonoBehaviour
 
     void Update()
     {
+        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver())
+        {
             MovePlayerByPhysics();
+        }
     }
 
     private void MovePlayerByPhysics()

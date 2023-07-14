@@ -39,30 +39,36 @@ public class Enemy : MonoBehaviour
     {
         if(HP <= 0)
         {
+            GameObject.Find("GameController").GetComponent<GameController>().AddPointsToScore(100);
             Destroy(gameObject);
         }
-
-        DetectPlayer();
+        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver()) 
+        { 
+            DetectPlayer();
+        }
     }
 
     void FixedUpdate()
     {
-        if (target != null)
+        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver()) 
         {
-            RotateTowardsTarget();
-
-            if(!readyToShoot)
+            if (target != null)
             {
-                Vector3 direction = (target.position - transform.position).normalized;
-                enemyRigidbody.velocity = direction * speed;
-            }
+                RotateTowardsTarget();
 
-            if (Time.time >= nextFireTime)
-            {
-                if(readyToShoot)
-                    Shoot();
+                if(!readyToShoot)
+                {
+                    Vector3 direction = (target.position - transform.position).normalized;
+                    enemyRigidbody.velocity = direction * speed;
+                }
 
-                nextFireTime = Time.time + fireRate; // Atualiza o próximo momento disponível para disparar
+                if (Time.time >= nextFireTime)
+                {
+                    if(readyToShoot)
+                        Shoot();
+
+                    nextFireTime = Time.time + fireRate; // Atualiza o próximo momento disponível para disparar
+                }
             }
         }
     }
