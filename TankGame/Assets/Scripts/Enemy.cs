@@ -92,6 +92,7 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
+        // Debug.Log("Enemy shoot!");
         Vector3 direction = (target.position - transform.position).normalized;
 
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);

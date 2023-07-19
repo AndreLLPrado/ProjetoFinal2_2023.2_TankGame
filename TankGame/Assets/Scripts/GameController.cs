@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -30,14 +31,15 @@ public class GameController : MonoBehaviour
     //Logic
     [SerializeField]
     private bool gameOver;
+    bool save;
 
     private void Start()
     {
+        save = false;
         aux = timer;
         aux2 = spawnEnemyTime;
 
         // saveGame();
-
         loadGame();
     }
 
@@ -52,17 +54,26 @@ public class GameController : MonoBehaviour
                 GetComponent<SpawnPicker>().SpawnEnemy();
                 spawnEnemyTime = aux2;
             }
-            //if(score >= highScore)
-            //{
-            //    highScore = score;
-            //}
-
-            //if(currentTime >= bestTime)
-            //{
-            //    bestTime = currentTime;
-            //}
 
             // DifficulrtIncrease();
+        }
+        else
+        {
+            if (score >= highScore)
+            {
+                highScore = score;
+            }
+
+            if (currentTime >= bestTime)
+            {
+                bestTime = currentTime;
+            }
+
+            if(!save)
+            {
+                saveGame();
+                save = true;
+            }
         }
     }
 
@@ -126,6 +137,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("game");
+    }
+
     public void setGameOver(bool gOnver)
     {
         gameOver = gOnver;
@@ -134,5 +150,21 @@ public class GameController : MonoBehaviour
     public bool getGameOver()
     {
         return gameOver;
+    }
+
+    public float[] getPlayerTimeInfo()
+    {
+        float [] times = new float[2];
+        times[0] = currentTime;
+        times[1] = bestTime;
+        return times;
+    }
+
+    public int[] getPlayerScoreInfo()
+    {
+        int [] scoreBoard = new int[2];
+        scoreBoard[0] = score;
+        scoreBoard[1] = highScore;
+        return scoreBoard;
     }
 }

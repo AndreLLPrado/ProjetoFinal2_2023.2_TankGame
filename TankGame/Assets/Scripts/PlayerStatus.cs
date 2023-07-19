@@ -9,7 +9,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void Update()
     {
-        if(HP < 0)
+        if(HP < 1)
         {
             GameObject.Find("GameController").GetComponent<GameController>().setGameOver(true);
         }
@@ -18,5 +18,10 @@ public class PlayerStatus : MonoBehaviour
     public void TakeDamage(int damage)
     {
         HP -= damage;
+    }
+
+    public int getPlayerHP()
+    {
+        return HP;
     }
 }

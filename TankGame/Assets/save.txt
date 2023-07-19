@@ -1,6 +1,6 @@
 score
-0
+600
 bestTime
-0
+36,10829
 cash
 99999999

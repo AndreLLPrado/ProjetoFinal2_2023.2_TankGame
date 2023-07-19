@@ -8,6 +8,8 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField]
     private int damage;
 
+    private bool hasCollided = false;
+
     void Start()
     {
         Invoke("DestroyObject", destructionDelay);
@@ -20,14 +22,18 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (hasCollided)
+            return;
         // Debug.Log("Enemy bullet colide with: " + collision.gameObject.name + " tag: " + collision.gameObject.tag);
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             if(collision.gameObject.GetComponent<PlayerStatus>() != null)
             {
-                collision.gameObject.GetComponent<PlayerStatus>().TakeDamage(1);
+                // Debug.Log("Enemy Hit Damage: " + damage.ToString());
+                collision.gameObject.GetComponent<PlayerStatus>().TakeDamage(damage);
             }
         }
+        hasCollided = true;
         Destroy(gameObject);
     }
 }
