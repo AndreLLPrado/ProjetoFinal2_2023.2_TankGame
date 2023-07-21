@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,11 +37,25 @@ public class DisplayController : MonoBehaviour
     private Image lifeBar;
     [SerializeField]
     private int maxPlayerHP;
+    bool playerHasSpawned;
 
     void Start()
     {
         gameOverPanel.SetActive(false);
-        maxPlayerHP = GameObject.Find("Player").GetComponent<PlayerStatus>().getPlayerHP();
+        // maxPlayerHP = GameObject.Find("GameController").GetComponent<GameController>().getPlayerHP();
+        string filePath = Application.dataPath + "/save.txt";
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                Debug.Log(line);
+                if (line == "HP")
+                {
+                    maxPlayerHP = int.Parse(reader.ReadLine());
+                }
+            }
+        }
     }
 
     void Update()
@@ -81,9 +96,9 @@ public class DisplayController : MonoBehaviour
 
     private void LifeBar()
     {
-        int acutalHP = GameObject.Find("Player").GetComponent<PlayerStatus>().getPlayerHP();
+        int acutalHP = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStatus>().getPlayerHP();
+        float HP = (float)acutalHP / (float)maxPlayerHP;
 
-        float HP = (float)acutalHP / (float)maxPlayerHP * 1f;
         lifeBar.fillAmount = HP;
     }
 }

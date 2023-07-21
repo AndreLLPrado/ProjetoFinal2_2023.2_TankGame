@@ -11,6 +11,8 @@ public class PlayerMoviment : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        speed = GameObject.Find("GameController").GetComponent<GameController>().getPlayerSpeed();
     }
 
     void Update()

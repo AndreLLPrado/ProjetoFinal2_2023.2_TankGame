@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
+using System.Globalization;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject playerPrefab;
+
     // Time
     [SerializeField]
     private float timer; // time to difficulty increase
@@ -33,6 +37,12 @@ public class GameController : MonoBehaviour
     private bool gameOver;
     bool save;
 
+    //player status
+    private int HP;
+    [SerializeField] private float speed;
+    [SerializeField] private float fireRate;
+    private int damage;
+
     private void Start()
     {
         save = false;
@@ -41,6 +51,7 @@ public class GameController : MonoBehaviour
 
         // saveGame();
         loadGame();
+        Instantiate(playerPrefab, new Vector3(0f, 1.21f, 0f), Quaternion.identity);
     }
 
     private void Update()
@@ -71,6 +82,7 @@ public class GameController : MonoBehaviour
 
             if(!save)
             {
+                cash += calculateCash();
                 saveGame();
                 save = true;
             }
@@ -105,7 +117,15 @@ public class GameController : MonoBehaviour
             writer.WriteLine("bestTime");
             writer.WriteLine(bestTime.ToString());
             writer.WriteLine("cash");
-            writer.WriteLine("99999999");
+            writer.WriteLine(cash.ToString());
+            writer.WriteLine("HP");
+            writer.WriteLine(HP.ToString());
+            writer.WriteLine("speed");
+            writer.WriteLine(speed.ToString());
+            writer.WriteLine("fireRate");
+            writer.WriteLine(fireRate.ToString());
+            writer.WriteLine("damage");
+            writer.WriteLine(damage.ToString());
         }
 
         Debug.Log("Arquivo criado/alterado e salvo em: " + filePath);
@@ -127,11 +147,30 @@ public class GameController : MonoBehaviour
                 }
                 else if(line == "bestTime")
                 {
-                    bestTime = float.Parse(reader.ReadLine());
+                    string valueString = reader.ReadLine();
+                    float.TryParse(valueString, NumberStyles.Float, CultureInfo.InvariantCulture, out bestTime);
                 }
                 else if(line == "cash")
                 {
                     cash = int.Parse(reader.ReadLine());
+                }
+                else if (line == "HP")
+                {
+                    HP = int.Parse(reader.ReadLine());
+                }
+                else if( line == "speed")
+                {
+                    string valueString = reader.ReadLine();
+                    float.TryParse(valueString, NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
+                }
+                else if(line == "fireRate")
+                {
+                    string valueString = reader.ReadLine();
+                    float.TryParse(valueString, NumberStyles.Float, CultureInfo.InvariantCulture, out fireRate);
+                }
+                else if (line == "damage")
+                {
+                    damage = int.Parse(reader.ReadLine());
                 }
             }
         }
@@ -140,6 +179,12 @@ public class GameController : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("game");
+    }
+
+    private int calculateCash()
+    {
+        int cash = score / 10;
+        return cash;
     }
 
     public void setGameOver(bool gOnver)
@@ -166,5 +211,25 @@ public class GameController : MonoBehaviour
         scoreBoard[0] = score;
         scoreBoard[1] = highScore;
         return scoreBoard;
+    }
+
+    public float getPlayerSpeed()
+    {
+        return speed;
+    }
+
+    public int getPlayerHP()
+    {
+        return HP;
+    }
+
+    public float getPlayerFireRate()
+    {
+        return fireRate;
+    }
+
+    public int getPlayerDamage()
+    {
+        return damage;
     }
 }

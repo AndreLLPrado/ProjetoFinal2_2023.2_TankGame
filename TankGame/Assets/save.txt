@@ -1,6 +1,14 @@
 score
-600
+900
 bestTime
-36,10829
+46,24481
 cash
-99999999
+90
+HP
+5
+speed
+5
+fireRate
+0
+damage
+1

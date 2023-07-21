@@ -25,18 +25,27 @@ public class Enemy : MonoBehaviour
     private float detectionRadius;
     public LayerMask playerLayer;
     private bool readyToShoot;
+    bool playerHasSpawned;
 
 
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody>();
-        target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+        // target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
 
         nextFireTime = Time.time;
     }
 
     private void Update()
     {
+        if(!playerHasSpawned)
+        {
+            target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+            if(target != null)
+            {
+                playerHasSpawned = true;
+            }
+        }
         if(HP <= 0)
         {
             GameObject.Find("GameController").GetComponent<GameController>().AddPointsToScore(100);

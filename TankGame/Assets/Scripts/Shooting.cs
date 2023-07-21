@@ -15,6 +15,7 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+        fireRate = GameObject.Find("GameController").GetComponent<GameController>().getPlayerFireRate();
     }
 
     void Update()

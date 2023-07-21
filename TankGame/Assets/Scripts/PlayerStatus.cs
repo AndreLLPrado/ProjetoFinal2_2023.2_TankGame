@@ -7,6 +7,10 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     private int HP;
 
+    private void Start()
+    {
+        HP = GameObject.Find("GameController").GetComponent<GameController>().getPlayerHP();
+    }
     private void Update()
     {
         if(HP < 1)

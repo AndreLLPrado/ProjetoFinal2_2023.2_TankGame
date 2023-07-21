@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Invoke("DestroyObject", destructionDelay);
+        damage = GameObject.Find("GameController").GetComponent<GameController>().getPlayerDamage();
     }
 
     void DestroyObject()
