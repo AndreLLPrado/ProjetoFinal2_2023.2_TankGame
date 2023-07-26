@@ -115,15 +115,15 @@ public class GameController : MonoBehaviour
             writer.WriteLine("score");
             writer.WriteLine(highScore.ToString());
             writer.WriteLine("bestTime");
-            writer.WriteLine(bestTime.ToString());
+            writer.WriteLine(bestTime.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("cash");
             writer.WriteLine(cash.ToString());
             writer.WriteLine("HP");
             writer.WriteLine(HP.ToString());
             writer.WriteLine("speed");
-            writer.WriteLine(speed.ToString());
+            writer.WriteLine(speed.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("fireRate");
-            writer.WriteLine(fireRate.ToString());
+            writer.WriteLine(speed.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("damage");
             writer.WriteLine(damage.ToString());
         }
