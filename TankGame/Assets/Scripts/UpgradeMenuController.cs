@@ -7,15 +7,15 @@ using UnityEngine;
 public class UpgradeMenuController : MonoBehaviour
 {
     [SerializeField]
-    private int cash;
+    private int cash = 0;
     [SerializeField]
-    private int HP;
+    private int HP = 5;
     [SerializeField]
-    private float speed;
+    private float speed = 5f;
     [SerializeField]
-    private float fireRate;
+    private float fireRate = 1.5f;
     [SerializeField]
-    private int damage;
+    private int damage = 1;
 
     //for debug
     [SerializeField]
@@ -34,12 +34,60 @@ public class UpgradeMenuController : MonoBehaviour
         skillLevel = new int[4];
         skillCost = new int[4];
 
+        foreach(int level in skillLevel)
+        {
+            skillLevel[level] = 0;
+        }
+
         skillCost[0] = 10; // Speed
         skillCost[1] = 10; // HP
         skillCost[2] = 10; // Fire Rate
         skillCost[3] = 10; // damage
 
+        CheckAndCreateFile();
         loadGame();
+    }
+
+    void CheckAndCreateFile()
+    {
+        string filePath = Application.dataPath + "/save.txt"; // Caminho do arquivo a ser criado/aberto
+        if (!File.Exists(filePath))
+        {
+            // Cria o arquivo se ele não existir
+            using (StreamWriter writer = File.CreateText(filePath))
+            {
+                writer.WriteLine("score");
+                writer.WriteLine(highScore.ToString());
+                writer.WriteLine("bestTime");
+                writer.WriteLine(bestTime.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("cash");
+                writer.WriteLine(cash.ToString());
+                writer.WriteLine("HP");
+                writer.WriteLine(HP.ToString());
+                writer.WriteLine("speed");
+                writer.WriteLine(speed.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("fireRate");
+                writer.WriteLine(fireRate.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("damage");
+                writer.WriteLine(damage.ToString());
+                writer.WriteLine("skillLevel");
+                for (int i = 0; i < skillLevel.Length; i++)
+                {
+                    writer.WriteLine(skillLevel[0].ToString());
+                }
+                writer.WriteLine("skillCost");
+                for (int i = 0; i < skillCost.Length; i++)
+                {
+                    writer.WriteLine(skillCost[0].ToString());
+                }
+            }
+
+            Debug.Log("Arquivo criado em: " + filePath);
+        }
+        else
+        {
+            Debug.Log("Arquivo já existe em: " + filePath);
+        }
     }
     private void loadGame()
     {

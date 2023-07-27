@@ -86,7 +86,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8142686873019869360, guid: 077e78ad3b0878d418015db926a75b11, type: 3}
   bulletSpeed: 100
   fireRate: 2
-  detectionRadius: 10
+  detectionRadius: 15
   playerLayer:
     serializedVersion: 2
     m_Bits: 8

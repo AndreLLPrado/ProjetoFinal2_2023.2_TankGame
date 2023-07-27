@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     private GameObject playerPrefab;
 
     // Time
+    [Header("Time controller")]
     [SerializeField]
     private float timer; // time to difficulty increase
     private float aux;
@@ -23,33 +24,51 @@ public class GameController : MonoBehaviour
     private float aux2;
 
     // Score
+    [Header("Score controller")]
     [SerializeField]
     private int score;
     [SerializeField]
     private int highScore;
 
+    [Header("Others")]
     //cash
     [SerializeField]
     private int cash;
 
     //Logic
+    [Header("Game Logic")]
     [SerializeField]
     private bool gameOver;
     bool save;
+    [SerializeField]
+    private int difficultyLevel = 0;
+    [SerializeField]
+    private bool maxDifficultyActivate;
+    [SerializeField]
+    private int bonusPoints;
 
     //player status
+    [Header("Player Status")]
     private int HP;
     [SerializeField] private float speed;
     [SerializeField] private float fireRate;
     private int damage;
 
+    [SerializeField]
+    private int[] skillLevel;
+
+    [SerializeField]
+    private int[] skillCost;
+
     private void Start()
     {
+        skillLevel = new int[4];
+        skillCost = new int[4];
+
         save = false;
         aux = timer;
         aux2 = spawnEnemyTime;
 
-        // saveGame();
         loadGame();
         Instantiate(playerPrefab, new Vector3(0f, 1.21f, 0f), Quaternion.identity);
     }
@@ -66,7 +85,10 @@ public class GameController : MonoBehaviour
                 spawnEnemyTime = aux2;
             }
 
-            // DifficulrtIncrease();
+            if(!maxDifficultyActivate)
+            {
+                DifficulrtIncrease();
+            }
         }
         else
         {
@@ -94,7 +116,15 @@ public class GameController : MonoBehaviour
         timer -= Time.deltaTime;
         if( timer <= 0)
         {
-            //Difficulty increase
+            if(difficultyLevel < 5)
+            {
+                difficultyLevel++;
+                score += bonusPoints;
+            }
+            else
+            {
+                maxDifficultyActivate = true;
+            }
 
             timer = aux;
         }
@@ -123,9 +153,19 @@ public class GameController : MonoBehaviour
             writer.WriteLine("speed");
             writer.WriteLine(speed.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("fireRate");
-            writer.WriteLine(speed.ToString(CultureInfo.InvariantCulture));
+            writer.WriteLine(fireRate.ToString(CultureInfo.InvariantCulture));
             writer.WriteLine("damage");
             writer.WriteLine(damage.ToString());
+            writer.WriteLine("skillLevel");
+            for (int i = 0; i < skillLevel.Length; i++)
+            {
+                writer.WriteLine(skillLevel[i].ToString());
+            }
+            writer.WriteLine("skillCost");
+            for (int i = 0; i < skillCost.Length; i++)
+            {
+                writer.WriteLine(skillCost[i].ToString());
+            }
         }
 
         Debug.Log("Arquivo criado/alterado e salvo em: " + filePath);
@@ -140,17 +180,17 @@ public class GameController : MonoBehaviour
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                Debug.Log(line);
-                if(line == "score")
+                if (line == "score")
                 {
                     highScore = int.Parse(reader.ReadLine());
                 }
-                else if(line == "bestTime")
+                else if (line == "bestTime")
                 {
                     string valueString = reader.ReadLine();
                     float.TryParse(valueString, NumberStyles.Float, CultureInfo.InvariantCulture, out bestTime);
+                    // bestTime = float.Parse(reader.ReadLine());
                 }
-                else if(line == "cash")
+                else if (line == "cash")
                 {
                     cash = int.Parse(reader.ReadLine());
                 }
@@ -158,19 +198,33 @@ public class GameController : MonoBehaviour
                 {
                     HP = int.Parse(reader.ReadLine());
                 }
-                else if( line == "speed")
+                else if (line == "speed")
                 {
-                    string valueString = reader.ReadLine();
-                    float.TryParse(valueString, NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
+                    speed = float.Parse(reader.ReadLine());
                 }
-                else if(line == "fireRate")
+                else if (line == "fireRate")
                 {
                     string valueString = reader.ReadLine();
                     float.TryParse(valueString, NumberStyles.Float, CultureInfo.InvariantCulture, out fireRate);
+                    // fireRate = float.Parse(reader.ReadLine());
                 }
                 else if (line == "damage")
                 {
                     damage = int.Parse(reader.ReadLine());
+                }
+                else if (line == "skillLevel")
+                {
+                    for (int i = 0; i < skillLevel.Length; i++)
+                    {
+                        skillLevel[i] = int.Parse(reader.ReadLine());
+                    }
+                }
+                else if (line == "skillCost")
+                {
+                    for (int i = 0; i < skillCost.Length; i++)
+                    {
+                        skillCost[i] = int.Parse(reader.ReadLine());
+                    }
                 }
             }
         }
@@ -179,6 +233,11 @@ public class GameController : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("game");
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 
     private int calculateCash()
@@ -231,5 +290,10 @@ public class GameController : MonoBehaviour
     public int getPlayerDamage()
     {
         return damage;
+    }
+
+    public int getDifficultyLevel()
+    {
+        return difficultyLevel;
     }
 }

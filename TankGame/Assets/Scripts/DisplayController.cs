@@ -20,17 +20,29 @@ public class DisplayController : MonoBehaviour
     private int bestScore;
 
     //UI
+    [Header("Time")]
     [SerializeField]
     private Text timeText;
+    [SerializeField]
+    private GameObject newTimeRecord;
 
+    [Header("Score")]
     [SerializeField]
     private Text scoreText;
+    [SerializeField]
+    private GameObject newHighScore;
 
+    [Header("Cash")]
+    [SerializeField]
+    private Text cashWonText;
+
+    [Header("In Game")]
     [SerializeField]
     private Text inGameScoreText;
     [SerializeField]
     private Text inGameTimeText;
 
+    [Header("Life Bar")]
     [SerializeField]
     private GameObject lifeBarObject;
     [SerializeField]
@@ -73,6 +85,26 @@ public class DisplayController : MonoBehaviour
 
             timeText.text = "Time survived: " + currentTime.ToString("F2") + "\nBest Time: " + bestTime.ToString("F2");
             scoreText.text = "Score: " + actualScore.ToString() + "\nBest score: " + bestScore.ToString();
+
+            cashWonText.text = "Cash: +$" + (actualScore / 10).ToString();
+
+            if(actualScore >= bestScore)
+            {
+                newHighScore.SetActive(true);
+            }
+            else
+            {
+                newHighScore.SetActive(false);
+            }
+
+            if(currentTime >= bestTime)
+            {
+                newTimeRecord.SetActive(true);
+            }
+            else
+            {
+                newTimeRecord.SetActive(false);
+            }
 
         }
         else

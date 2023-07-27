@@ -19,8 +19,20 @@ public class SpawnPicker : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-        int position = Random.Range(0, spawnPoints.Length);
-        Instantiate(Enemy, spawnPoints[position].position, Quaternion.identity);
-        
+        int difficulty = GameObject.Find("GameController").GetComponent<GameController>().getDifficultyLevel();
+
+        if(difficulty > 1)
+        {
+            for (int i = 0; i < difficulty; i++)
+            {
+                int position = Random.Range(0, spawnPoints.Length);
+                Instantiate(Enemy, spawnPoints[position].position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            int position = Random.Range(0, spawnPoints.Length);
+            Instantiate(Enemy, spawnPoints[position].position, Quaternion.identity);
+        }
     }
 }
