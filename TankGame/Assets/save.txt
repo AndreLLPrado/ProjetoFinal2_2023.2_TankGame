@@ -1,9 +1,9 @@
 score
 1700
 bestTime
-82.17825
+94.20174
 cash
-70
+230
 HP
 7
 speed

@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
 
     //bullet
     [SerializeField]
-    private Transform bulletSpawn;
+    private Transform[] bulletSpawn;
     public GameObject bulletPrefab;
     public float bulletSpeed;
     public float fireRate = 2f;
@@ -27,6 +27,21 @@ public class Enemy : MonoBehaviour
     private bool readyToShoot;
     bool playerHasSpawned;
 
+    [SerializeField]
+    private int points;
+
+    [SerializeField]
+    private bool isMegaTank;
+
+    //Drop item
+    [Header("Drop item")]
+    [SerializeField]
+    private GameObject[] dropsPrefabs;
+    [SerializeField]
+    private int[] dropChance;
+
+    Rigidbody rigidBody;
+
 
     void Start()
     {
@@ -34,6 +49,13 @@ public class Enemy : MonoBehaviour
         // target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
 
         nextFireTime = Time.time;
+
+        // Get the Rigidbody component
+        rigidBody = GetComponent<Rigidbody>();
+
+        // Set the collision layer mask
+        // rigidBody.collisionLayers = 255 ^ LayerMask.NameToLayer("Item");
+        
     }
 
     private void Update()
@@ -48,7 +70,13 @@ public class Enemy : MonoBehaviour
         }
         if(HP <= 0)
         {
-            GameObject.Find("GameController").GetComponent<GameController>().AddPointsToScore(100);
+            GameObject.Find("GameController").GetComponent<GameController>().AddPointsToScore(points);
+            if (isMegaTank)
+            {
+                GameObject.Find("GameController").GetComponent<GameController>().setMegaTankHasSpawned(false);
+                dropItem();
+            }
+            dropItem();
             Destroy(gameObject);
         }
         if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver()) 
@@ -82,6 +110,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void dropItem()
+    {
+        int item = Random.Range(0, dropsPrefabs.Length);
+        int drop = Random.Range(0, 101);
+        if(drop <= dropChance[item])
+        {
+            Vector3 position = new Vector3(transform.position.x, -1, transform.position.z);
+            Instantiate(dropsPrefabs[item], position, Quaternion.identity);
+        }
+    }
     public void TakeDamage(int damage)
     {
         HP -= damage;
@@ -104,9 +142,23 @@ public class Enemy : MonoBehaviour
         // Debug.Log("Enemy shoot!");
         Vector3 direction = (target.position - transform.position).normalized;
 
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-        bulletRigidbody.velocity = direction * bulletSpeed;
+        if(bulletSpawn.Length <= 1)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn[0].position, Quaternion.identity);
+            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+            bulletRigidbody.velocity = direction * bulletSpeed;
+        }
+        else
+        {
+            Debug.Log("Instantiate mega bullet");
+            for(int i = 0; i < bulletSpawn.Length; i++)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn[i].position, Quaternion.identity);
+                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+                bulletRigidbody.velocity = direction * bulletSpeed;
+            }
+        }
+
     }
 
     void DetectPlayer()

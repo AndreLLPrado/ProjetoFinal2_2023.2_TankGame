@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1657437588763129795}
   - component: {fileID: 8793520435941973946}
   - component: {fileID: 5795440336036088085}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -82,7 +82,8 @@ MonoBehaviour:
   HP: 5
   target: {fileID: 0}
   speed: 2
-  bulletSpawn: {fileID: 1315981522950049066}
+  bulletSpawn:
+  - {fileID: 1315981522950049066}
   bulletPrefab: {fileID: 8142686873019869360, guid: 077e78ad3b0878d418015db926a75b11, type: 3}
   bulletSpeed: 100
   fireRate: 2
@@ -90,6 +91,11 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  points: 100
+  isMegaTank: 0
+  dropsPrefabs:
+  - {fileID: 2645147595377517845, guid: 6ade94dacd5a55e4eb7b180b50c58f27, type: 3}
+  dropChance: 1e000000
 --- !u!54 &8793520435941973946
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,11 +182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86bae24804cd8f941be853dac92de0d6, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 86bae24804cd8f941be853dac92de0d6, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86bae24804cd8f941be853dac92de0d6, type: 3}
@@ -246,11 +252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d3154e0908ff2b34f8122346634f7f64, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: d3154e0908ff2b34f8122346634f7f64, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3154e0908ff2b34f8122346634f7f64, type: 3}

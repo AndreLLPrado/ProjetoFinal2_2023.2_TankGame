@@ -23,6 +23,16 @@ public class GameController : MonoBehaviour
     private float spawnEnemyTime;
     private float aux2;
 
+    //Mega Tank
+    [Header("Mega Tank")]
+    [SerializeField]
+    private float spawnMegaTankTime;
+    private float aux3;
+    [SerializeField]
+    private GameObject megaTankPrefab;
+    [SerializeField]
+    private bool megaTankHasSpawned;
+
     // Score
     [Header("Score controller")]
     [SerializeField]
@@ -68,6 +78,7 @@ public class GameController : MonoBehaviour
         save = false;
         aux = timer;
         aux2 = spawnEnemyTime;
+        aux3 = spawnMegaTankTime;
 
         loadGame();
         Instantiate(playerPrefab, new Vector3(0f, 1.21f, 0f), Quaternion.identity);
@@ -89,6 +100,8 @@ public class GameController : MonoBehaviour
             {
                 DifficulrtIncrease();
             }
+
+            SpawnMegaTank();
         }
         else
         {
@@ -127,6 +140,21 @@ public class GameController : MonoBehaviour
             }
 
             timer = aux;
+        }
+    }
+
+    private void SpawnMegaTank()
+    {
+        if(!megaTankHasSpawned)
+        {
+            spawnMegaTankTime -= Time.deltaTime;
+            if( spawnMegaTankTime <= 0)
+            {
+                GameObject megaTank = Instantiate(megaTankPrefab, Vector3.zero, Quaternion.identity);
+                megaTankHasSpawned = true;
+
+                spawnMegaTankTime = aux3;
+            }
         }
     }
 
@@ -295,5 +323,10 @@ public class GameController : MonoBehaviour
     public int getDifficultyLevel()
     {
         return difficultyLevel;
+    }
+
+    public void setMegaTankHasSpawned(bool s)
+    {
+        megaTankHasSpawned = s;
     }
 }

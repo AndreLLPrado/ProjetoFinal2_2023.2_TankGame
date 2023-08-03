@@ -6,10 +6,11 @@ public class PlayerStatus : MonoBehaviour
 {
     [SerializeField]
     private int HP;
+    private int maxHP;
 
     private void Start()
     {
-        HP = GameObject.Find("GameController").GetComponent<GameController>().getPlayerHP();
+        maxHP = HP = GameObject.Find("GameController").GetComponent<GameController>().getPlayerHP();
     }
     private void Update()
     {
@@ -19,6 +20,14 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    public void cure(int cure)
+    {
+        HP += cure;
+        if(HP > maxHP)
+        {
+            HP = maxHP;
+        }
+    }
     public void TakeDamage(int damage)
     {
         HP -= damage;

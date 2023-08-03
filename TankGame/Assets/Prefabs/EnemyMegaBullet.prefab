@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8142686872434294658}
   - component: {fileID: 8142686872434294659}
   - component: {fileID: 8142686872434294660}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,8 +109,8 @@ GameObject:
   - component: {fileID: 7570393205835757731}
   - component: {fileID: 6846142690913067788}
   - component: {fileID: 549910975429874163}
-  m_Layer: 8
-  m_Name: EnemyBullet
+  m_Layer: 0
+  m_Name: EnemyMegaBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ Transform:
   m_GameObject: {fileID: 8142686873019869360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8142686872434294661}
