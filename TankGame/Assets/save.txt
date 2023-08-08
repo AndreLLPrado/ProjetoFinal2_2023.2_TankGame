@@ -3,7 +3,7 @@ score
 bestTime
 94.20174
 cash
-230
+260
 HP
 7
 speed

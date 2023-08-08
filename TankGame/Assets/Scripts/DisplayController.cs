@@ -25,12 +25,16 @@ public class DisplayController : MonoBehaviour
     private Text timeText;
     [SerializeField]
     private GameObject newTimeRecord;
+    [SerializeField]
+    private GameObject timerPanelObj;
 
     [Header("Score")]
     [SerializeField]
     private Text scoreText;
     [SerializeField]
     private GameObject newHighScore;
+    [SerializeField]
+    private GameObject panelScoreObj;
 
     [Header("Cash")]
     [SerializeField]
@@ -76,9 +80,11 @@ public class DisplayController : MonoBehaviour
 
         if (GameObject.Find("GameController").GetComponent<GameController>().getGameOver())
         {
+            panelScoreObj.SetActive(false);
+            timerPanelObj.SetActive(false);
             lifeBarObject.SetActive(false);
-            inGameTimeText.text = "";
-            inGameScoreText.text = "";
+            //inGameTimeText.text = "";
+            //inGameScoreText.text = "";
 
             getPlayerVals();
             gameOverPanel.SetActive(true);
