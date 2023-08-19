@@ -25,6 +25,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Enemy>() != null)
             {
+                // collision.gameObject.GetComponent<Enemy>().playDamageSound();
                 collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             }
         }

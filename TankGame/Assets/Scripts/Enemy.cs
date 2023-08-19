@@ -42,20 +42,17 @@ public class Enemy : MonoBehaviour
 
     Rigidbody rigidBody;
 
+    // SFX
+    private AudioSource audioSource;
+
 
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody>();
-        // target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
 
         nextFireTime = Time.time;
-
-        // Get the Rigidbody component
         rigidBody = GetComponent<Rigidbody>();
-
-        // Set the collision layer mask
-        // rigidBody.collisionLayers = 255 ^ LayerMask.NameToLayer("Item");
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -122,7 +119,8 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        HP -= damage;
+        StartCoroutine(playSoundAndTakeDamage(damage));
+        // HP -= damage;
     }
 
     void RotateTowardsTarget()
@@ -183,6 +181,17 @@ public class Enemy : MonoBehaviour
         {
             readyToShoot = false;
         }
+    }
+    public void playDamageSound()
+    {
+        // StartCoroutine(playSound());
+        audioSource.Play();
+    }
+    IEnumerator playSoundAndTakeDamage(int damage)
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(.1f);
+        HP -= damage;
     }
 
     void OnDrawGizmos()
