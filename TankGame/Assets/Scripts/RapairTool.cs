@@ -9,6 +9,8 @@ public class RapairTool : MonoBehaviour
     private float rotationSpeed;
     [SerializeField]
     private float duration;
+    [SerializeField]
+    private Light light;
 
 
     [Header("Cure force")]
@@ -18,12 +20,17 @@ public class RapairTool : MonoBehaviour
     [SerializeField]
     private int maxCure;
 
+    private void Start()
+    {
+        light.intensity = duration;
+    }
+
     private void Update()
     {
         transform.eulerAngles += new Vector3(0f, rotationSpeed * Time.deltaTime, 0f);
-
         duration -= Time.deltaTime;
-        if(duration <= 0f)
+        light.intensity -= Time.deltaTime;
+        if (duration <= 0f)
         {
             Destroy(gameObject);
         }

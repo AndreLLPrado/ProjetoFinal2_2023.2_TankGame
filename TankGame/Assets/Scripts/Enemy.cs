@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour
     private int[] dropChance;
 
     Rigidbody rigidBody;
+    // VFX
+    private ParticleSystem particleSystem;
 
     // SFX
     private AudioSource audioSource;
@@ -49,7 +51,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody>();
-
+        particleSystem = GetComponent<ParticleSystem>();
         nextFireTime = Time.time;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
@@ -189,6 +191,7 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator playSoundAndTakeDamage(int damage)
     {
+        particleSystem.Play();
         audioSource.Play();
         yield return new WaitForSeconds(.1f);
         HP -= damage;
