@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
 
     Rigidbody rigidBody;
     // VFX
+    [SerializeField]
     private ParticleSystem particleSystem;
 
     // SFX
@@ -51,7 +52,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyRigidbody = GetComponent<Rigidbody>();
-        particleSystem = GetComponent<ParticleSystem>();
+        // particleSystem = GetComponent<ParticleSystem>();
         nextFireTime = Time.time;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
@@ -193,7 +194,7 @@ public class Enemy : MonoBehaviour
     {
         particleSystem.Play();
         audioSource.Play();
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.2f);
         HP -= damage;
     }
 
