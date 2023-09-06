@@ -10,6 +10,14 @@ public class EnemyBullet : MonoBehaviour
 
     private bool hasCollided = false;
 
+    private AudioSource sound;
+
+    private void Awake()
+    {
+        sound = GetComponent<AudioSource>();
+        sound.time = .15f;
+        sound.Play();
+    }
     void Start()
     {
         Invoke("DestroyObject", destructionDelay);
@@ -30,6 +38,7 @@ public class EnemyBullet : MonoBehaviour
             if(collision.gameObject.GetComponent<PlayerStatus>() != null)
             {
                 // Debug.Log("Enemy Hit Damage: " + damage.ToString());
+                GameObject.Find("Canvas").GetComponent<SFXPlayer>().PlayerTakeDamageSFXPlay();
                 collision.gameObject.GetComponent<PlayerStatus>().TakeDamage(damage);
             }
         }

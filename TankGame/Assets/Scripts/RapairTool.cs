@@ -19,7 +19,6 @@ public class RapairTool : MonoBehaviour
 
     [SerializeField]
     private int maxCure;
-
     private void Start()
     {
         light.intensity = duration;
@@ -40,6 +39,7 @@ public class RapairTool : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            GameObject.Find("Canvas").GetComponent<SFXPlayer>().RapairToolSFXPlay();
             int cure = Random.Range(minCure, maxCure);
             if (collision.gameObject.GetComponent<PlayerStatus>() != null) 
             {
