@@ -49,4 +49,9 @@ public class MenusController : MonoBehaviour
         howToPlayMenu.SetActive(false);
         creditsMenu.SetActive(true);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

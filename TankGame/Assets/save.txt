@@ -1,9 +1,9 @@
 score
-3400
+6100
 bestTime
-94.20174
+108.7696
 cash
-210
+850
 HP
 9
 speed

@@ -92,7 +92,10 @@ public class GameController : MonoBehaviour
             spawnEnemyTime -= Time.deltaTime;
             if(spawnEnemyTime < 0)
             {
-                GetComponent<SpawnPicker>().SpawnEnemy();
+                if(!megaTankHasSpawned)
+                {
+                    GetComponent<SpawnPicker>().SpawnEnemy();
+                }
                 spawnEnemyTime = aux2;
             }
 
