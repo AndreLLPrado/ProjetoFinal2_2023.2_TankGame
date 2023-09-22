@@ -1217,7 +1217,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tank Survive
+  m_Text: Tank Survival
 --- !u!222 &415791352
 CanvasRenderer:
   m_ObjectHideFlags: 0
