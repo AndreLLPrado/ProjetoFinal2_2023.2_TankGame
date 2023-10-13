@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
                 spawnEnemyTime = aux2;
             }
 
-            if(!maxDifficultyActivate)
+            if(!maxDifficultyActivate && !megaTankHasSpawned)
             {
                 DifficulrtIncrease();
             }

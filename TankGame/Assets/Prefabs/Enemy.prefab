@@ -4990,7 +4990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541521fda77784c44aaabe54d2ecaf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 5
+  HP: 3
   target: {fileID: 0}
   speed: 2
   bulletSpawn:
@@ -4998,7 +4998,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8142686873019869360, guid: 077e78ad3b0878d418015db926a75b11, type: 3}
   bulletSpeed: 30
   fireRate: 2
-  detectionRadius: 20
+  detectionRadius: 22
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
