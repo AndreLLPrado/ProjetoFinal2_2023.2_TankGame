@@ -12,7 +12,7 @@ public class PlayerRotationController : MonoBehaviour
 
     void Update()
     {
-        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver())
+        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver() && Time.timeScale > 0)
             RotationPlayer();
     }
 

@@ -71,7 +71,12 @@ public class UpgradeMenuDisplayController : MonoBehaviour
     }
     private void Update()
     {
-        cashText.text = "cash: " + GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash().ToString();
+        if(GameObject.Find("MenusController"))
+            cashText.text = "cash: " + GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash().ToString();
+
+        else if(GameObject.Find("GameOverPanel"))
+            cashText.text = "cash: " + GameObject.Find("GameOverPanel").GetComponent<UpgradeMenuController>().getCash().ToString();
+
         loadSkillsValues();
         UpgradeSpeedDisplay();
         UpgradeHPDisplay();
@@ -81,9 +86,11 @@ public class UpgradeMenuDisplayController : MonoBehaviour
 
     private void UpgradeSpeedDisplay()
     {
+        // get values
         SpeedLevel.text = "Lv: " + skillLevels[0].ToString();
         SpeedCost.text = "$" + skillCosts[0].ToString();
 
+        //progess bar
         float progress = (float)skillLevels[0] / 5f;
         SpeedBar.fillAmount = progress;
 
@@ -96,13 +103,28 @@ public class UpgradeMenuDisplayController : MonoBehaviour
             SpeedMaxText.SetActive(false);
         }
 
-        if (skillLevels[0] > 4 || skillCosts[0] > GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash())
+        if(GameObject.Find("MenusController"))
         {
-            UpgradeSpeedButton.interactable = false;
+            if (skillLevels[0] > 4 || skillCosts[0] > GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash())
+            {
+                UpgradeSpeedButton.interactable = false;
+            }
+            else
+            {
+                UpgradeSpeedButton.interactable = true;
+            }
         }
-        else
+
+        else if (GameObject.Find("GameOverPanel"))
         {
-            UpgradeSpeedButton.interactable = true;
+            if (skillLevels[0] > 4 || skillCosts[0] > GameObject.Find("GameOverPanel").GetComponent<UpgradeMenuController>().getCash())
+            {
+                UpgradeSpeedButton.interactable = false;
+            }
+            else
+            {
+                UpgradeSpeedButton.interactable = true;
+            }
         }
     }
 
@@ -123,14 +145,29 @@ public class UpgradeMenuDisplayController : MonoBehaviour
             HPMaxText.SetActive(false);
         }
 
-        if (skillLevels[1] > 4 || skillCosts[1] > GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash())
+        if(GameObject.Find("MenusController"))
         {
-            UpgradeHPButton.interactable = false;
+            if (skillLevels[1] > 4 || skillCosts[1] > GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash())
+            {
+                UpgradeHPButton.interactable = false;
+            }
+            else
+            {
+                UpgradeHPButton.interactable = true;
+            }
         }
-        else
+        else if(GameObject.Find("GameOverPanel"))
         {
-            UpgradeHPButton.interactable = true;
+            if (skillLevels[1] > 4 || skillCosts[1] > GameObject.Find("GameOverPanel").GetComponent<UpgradeMenuController>().getCash())
+            {
+                UpgradeHPButton.interactable = false;
+            }
+            else
+            {
+                UpgradeHPButton.interactable = true;
+            }
         }
+        
     }
 
     private void UpgradeFRDisplay()
@@ -150,13 +187,27 @@ public class UpgradeMenuDisplayController : MonoBehaviour
             FRMaxText.SetActive(false);
         }
 
-        if (skillLevels[2] > 4 || skillCosts[2] > GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash())
+        if (GameObject.Find("MenusController"))
         {
-            UpgradeFRButton.interactable = false;
+            if (skillLevels[2] > 4 || skillCosts[2] > GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash())
+            {
+                UpgradeFRButton.interactable = false;
+            }
+            else
+            {
+                UpgradeFRButton.interactable = true;
+            }
         }
-        else
+        else if (GameObject.Find("GameOverPanel"))
         {
-            UpgradeFRButton.interactable = true;
+            if (skillLevels[2] > 4 || skillCosts[2] > GameObject.Find("GameOverPanel").GetComponent<UpgradeMenuController>().getCash())
+            {
+                UpgradeFRButton.interactable = false;
+            }
+            else
+            {
+                UpgradeFRButton.interactable = true;
+            }
         }
     }
 
@@ -177,19 +228,42 @@ public class UpgradeMenuDisplayController : MonoBehaviour
             DamageMaxText.SetActive(false);
         }
 
-        if (skillLevels[3] > 4 || skillCosts[3] > GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash())
+        if (GameObject.Find("MenusController"))
         {
-            UpgradeDamageButton.interactable = false;
+            if (skillLevels[3] > 4 || skillCosts[3] > GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getCash())
+            {
+                UpgradeDamageButton.interactable = false;
+            }
+            else
+            {
+                UpgradeDamageButton.interactable = true;
+            }
         }
-        else
+        else if(GameObject.Find("GameOverPanel"))
         {
-            UpgradeDamageButton.interactable = true;
+            if (skillLevels[3] > 4 || skillCosts[3] > GameObject.Find("GameOverPanel").GetComponent<UpgradeMenuController>().getCash())
+            {
+                UpgradeDamageButton.interactable = false;
+            }
+            else
+            {
+                UpgradeDamageButton.interactable = true;
+            }
         }
+        
     }
 
     void loadSkillsValues()
     {
-        skillLevels = GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getSkillLevels();
-        skillCosts = GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getSkillCosts();
+        if (GameObject.Find("MenusController"))
+        {
+            skillLevels = GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getSkillLevels();
+            skillCosts = GameObject.Find("MenusController").GetComponent<UpgradeMenuController>().getSkillCosts();
+        }
+        else if(GameObject.Find("GameOverPanel"))
+        {
+            skillLevels = GameObject.Find("GameOverPanel").GetComponent<UpgradeMenuController>().getSkillLevels();
+            skillCosts = GameObject.Find("GameOverPanel").GetComponent<UpgradeMenuController>().getSkillCosts();
+        }
     }
 }

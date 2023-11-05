@@ -43,7 +43,8 @@ public class RapairTool : MonoBehaviour
             int cure = Random.Range(minCure, maxCure);
             if (collision.gameObject.GetComponent<PlayerStatus>() != null) 
             {
-                collision.gameObject.GetComponent<PlayerStatus>().cure(cure);
+                // collision.gameObject.GetComponent<PlayerStatus>().cure(cure);
+                collision.gameObject.GetComponent<PlayerStatus>().cure(minCure);
             }
             Destroy(gameObject);
         }

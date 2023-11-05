@@ -6,7 +6,8 @@ public class LookAtMouse : MonoBehaviour
 {
     void Update()
     {
-        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver()) 
+        float pause = Time.timeScale;
+        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver() && pause > 0) 
         { 
             // Obter a posição do mouse no mundo
             Vector3 mousePosition = Input.mousePosition;

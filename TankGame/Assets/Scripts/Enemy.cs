@@ -56,6 +56,27 @@ public class Enemy : MonoBehaviour
         nextFireTime = Time.time;
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+
+        if (!isMegaTank)
+        {
+            int difficulty = GameObject.Find("GameController").GetComponent<GameController>().getDifficultyLevel();
+            if (difficulty > 5)
+            {
+                int increaseBonus = difficulty - 5;
+                HP += increaseBonus;
+            }
+
+        }
+        else
+        {
+            int increaseBonus  = GameObject.Find("GameController").GetComponent<GameController>().getMegaTankPowerIncrease();
+            HP += increaseBonus * 10;
+
+            if(fireRate > 0.25f)
+            {
+                fireRate -= increaseBonus * 0.25f;
+            }
+        }
     }
 
     private void Update()

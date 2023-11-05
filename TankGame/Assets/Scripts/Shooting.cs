@@ -12,18 +12,28 @@ public class Shooting : MonoBehaviour
 
     private float nextFireTime;  // Próximo momento disponível para disparar
 
+    float increseValue;
+
+    [SerializeField]
+    private GameObject fireRateBar;
+
     private void Start()
     {
+        float increseValue = 0;
         mainCamera = Camera.main;
         fireRate = GameObject.Find("GameController").GetComponent<GameController>().getPlayerFireRate();
     }
 
     void Update()
     {
-        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver()) 
+        float pause = Time.timeScale;
+        if (!GameObject.Find("GameController").GetComponent<GameController>().getGameOver() && pause > 0) 
         { 
             if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
             {
+                fireRateBar.transform.localScale = new Vector3(0.0f, 0.2f, 0.2f);
+                increseValue = 0;
+
                 nextFireTime = Time.time + fireRate;
 
                 Vector3 mousePosition = Input.mousePosition;
@@ -37,6 +47,12 @@ public class Shooting : MonoBehaviour
                     Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
                     bulletRigidbody.velocity = direction.normalized * bulletSpeed;
                 }
+            }
+            else
+            {
+                // Calcula o valor de preenchimento da barra de acordo com a velocidade do fireRate
+                float fillValue = Mathf.Clamp(1.2f - (nextFireTime - Time.time) / fireRate, 0.0f, 1.2f);
+                fireRateBar.transform.localScale = new Vector3(fillValue, 0.2f, 0.2f);
             }
         }
     }

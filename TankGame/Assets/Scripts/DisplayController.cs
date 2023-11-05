@@ -55,6 +55,14 @@ public class DisplayController : MonoBehaviour
     private int maxPlayerHP;
     bool playerHasSpawned;
 
+    [Header("Mega Tank Timer")]
+    [SerializeField]
+    private Image megaTankTimer;
+    [SerializeField]
+    private GameObject megaTankTimerPanel;
+    [SerializeField]
+    private Text megaTankText;
+
     void Start()
     {
         gameOverPanel.SetActive(false);
@@ -77,12 +85,14 @@ public class DisplayController : MonoBehaviour
     void Update()
     {
         LifeBar();
+        MegaTankTimerControl();
 
         if (GameObject.Find("GameController").GetComponent<GameController>().getGameOver())
         {
             panelScoreObj.SetActive(false);
             timerPanelObj.SetActive(false);
             lifeBarObject.SetActive(false);
+            megaTankTimerPanel.SetActive(false);
             //inGameTimeText.text = "";
             //inGameScoreText.text = "";
 
@@ -138,5 +148,20 @@ public class DisplayController : MonoBehaviour
         float HP = (float)acutalHP / (float)maxPlayerHP;
 
         lifeBar.fillAmount = HP;
+    }
+
+    private void MegaTankTimerControl()
+    {
+        if(GameObject.Find("GameController").GetComponent<GameController>().getMegaTankHasSpawned())
+        {
+            megaTankTimerPanel.SetActive(false);
+        }
+        else
+        {
+            megaTankTimerPanel.SetActive(true);
+            float time = GameObject.Find("GameController").GetComponent<GameController>().getMegaTankTimerToSpawn();
+            float fill = time / 60;
+            megaTankTimer.fillAmount = fill;
+        }
     }
 }

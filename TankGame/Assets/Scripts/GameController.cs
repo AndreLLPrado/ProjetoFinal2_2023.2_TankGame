@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private int highScore;
 
-    [Header("Others")]
+    [Header("Cash")]
     //cash
     [SerializeField]
     private int cash;
@@ -70,8 +70,15 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private int[] skillCost;
 
+    //others
+    [Header("Others")]
+    [SerializeField] private GameObject upgradeStore;
+    private int MegaTankPowerIncrease;
+
     private void Start()
     {
+        MegaTankPowerIncrease = 0;
+
         skillLevel = new int[4];
         skillCost = new int[4];
 
@@ -132,15 +139,16 @@ public class GameController : MonoBehaviour
         timer -= Time.deltaTime;
         if( timer <= 0)
         {
-            if(difficultyLevel < 5)
-            {
-                difficultyLevel++;
-                score += bonusPoints;
-            }
-            else
-            {
-                maxDifficultyActivate = true;
-            }
+            difficultyLevel++;
+            //if (difficultyLevel < 5)
+            //{
+            //    difficultyLevel++;
+            //    score += bonusPoints;
+            //}
+            //else
+            //{
+            //    maxDifficultyActivate = true;
+            //}
 
             timer = aux;
         }
@@ -166,7 +174,7 @@ public class GameController : MonoBehaviour
         score += pts;
     }
 
-    private void saveGame()
+    public void saveGame()
     {
         string filePath = Application.dataPath + "/save.txt"; // Caminho do arquivo a ser criado/aberto
 
@@ -271,6 +279,12 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("menu");
     }
 
+    public void OpenCloseUpgradeStore()
+    {
+        bool active = upgradeStore.active;
+        upgradeStore.SetActive(!active);
+    }
+
     private int calculateCash()
     {
         int cash = score / 10;
@@ -331,5 +345,40 @@ public class GameController : MonoBehaviour
     public void setMegaTankHasSpawned(bool s)
     {
         megaTankHasSpawned = s;
+    }
+
+    public bool getMegaTankHasSpawned()
+    {
+        return megaTankHasSpawned;
+    }
+
+    public int getCash()
+    {
+        return cash;
+    }
+
+    public int[] getSkillLevels()
+    {
+        return skillLevel;
+    }
+
+    public int[] getSkillCosts()
+    {
+        return skillCost;
+    }
+
+    public void setMegaTankPowerIncrease(int power)
+    {
+        MegaTankPowerIncrease += power;
+    }
+
+    public int getMegaTankPowerIncrease()
+    {
+        return MegaTankPowerIncrease;
+    }
+
+    public float getMegaTankTimerToSpawn()
+    {
+        return spawnMegaTankTime;
     }
 }

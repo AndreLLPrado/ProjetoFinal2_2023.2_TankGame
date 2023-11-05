@@ -29,6 +29,9 @@ public class UpgradeMenuController : MonoBehaviour
     [SerializeField]
     private int[] skillCost;
 
+    [SerializeField]
+    private int[] skillCostProgression;
+
     private void Start()
     {
         skillLevel = new int[4];
@@ -39,10 +42,10 @@ public class UpgradeMenuController : MonoBehaviour
             skillLevel[level] = 0;
         }
 
-        skillCost[0] = 10; // Speed
-        skillCost[1] = 10; // HP
-        skillCost[2] = 10; // Fire Rate
-        skillCost[3] = 10; // damage
+        skillCost[0] = skillCostProgression[0]; // Speed
+        skillCost[1] = skillCostProgression[0]; // HP
+        skillCost[2] = skillCostProgression[0]; // Fire Rate
+        skillCost[3] = skillCostProgression[0]; // damage
 
         CheckAndCreateFile();
         loadGame();
@@ -192,7 +195,7 @@ public class UpgradeMenuController : MonoBehaviour
             speed += 2;
             cash -= cost;
             skillLevel[0]++;
-            skillCost[0] = cost * 10;
+            skillCost[0] = skillCostProgression[skillLevel[0]];
         }
     }
 
@@ -204,7 +207,7 @@ public class UpgradeMenuController : MonoBehaviour
             HP += 2;
             cash -= cost;
             skillLevel[1]++;
-            skillCost[1] = cost * 10;
+            skillCost[1] = skillCostProgression[skillLevel[1]];
         }
     }
 
@@ -216,7 +219,7 @@ public class UpgradeMenuController : MonoBehaviour
             fireRate -= 0.25f;
             cash -= cost;
             skillLevel[2]++;
-            skillCost[2] = cost * 10;
+            skillCost[2] = skillCostProgression[skillLevel[2]];
         }
     }
 
@@ -228,7 +231,7 @@ public class UpgradeMenuController : MonoBehaviour
             damage++;
             cash -= cost;
             skillLevel[3]++;
-            skillCost[3] = cost * 10;
+            skillCost[3] = skillCostProgression[skillLevel[3]];
         }
     }
     public int getCash()

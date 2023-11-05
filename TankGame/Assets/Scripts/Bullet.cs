@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("bullet colide with: " + collision.gameObject.name + " tag: " + collision.gameObject.tag);
+        // Debug.Log("bullet colide with: " + collision.gameObject.name + " tag: " + collision.gameObject.tag);
         if(collision.gameObject.tag == "Enemy")
         {
             if (collision.gameObject.GetComponent<Enemy>() != null)
@@ -29,6 +29,10 @@ public class Bullet : MonoBehaviour
                 collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             }
         }
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            GameObject.Find("GameController").GetComponent<GameController>().AddPointsToScore(50);
+        }
+            Destroy(gameObject);
     }
 }

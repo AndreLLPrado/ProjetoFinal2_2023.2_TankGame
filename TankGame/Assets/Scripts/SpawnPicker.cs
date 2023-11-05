@@ -14,7 +14,7 @@ public class SpawnPicker : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnEnemy();
+           // SpawnEnemy();
         }
     }
     public void SpawnEnemy()
@@ -23,6 +23,12 @@ public class SpawnPicker : MonoBehaviour
 
         if(difficulty > 1)
         {
+            if(difficulty > 5)
+            {
+                difficulty = 5;
+            }
+
+
             for (int i = 0; i < difficulty; i++)
             {
                 int position = Random.Range(0, spawnPoints.Length);

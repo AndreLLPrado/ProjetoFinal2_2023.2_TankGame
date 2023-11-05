@@ -82,7 +82,7 @@ MonoBehaviour:
   duration: 10
   light: {fileID: 5994229092720286301}
   minCure: 3
-  maxCure: 5
+  maxCure: 3
 --- !u!1 &7368401772744769824
 GameObject:
   m_ObjectHideFlags: 0
