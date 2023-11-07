@@ -46,6 +46,12 @@ public class RapairTool : MonoBehaviour
                 // collision.gameObject.GetComponent<PlayerStatus>().cure(cure);
                 collision.gameObject.GetComponent<PlayerStatus>().cure(minCure);
             }
+            if(collision.gameObject.GetComponent<PlayerMoviment>() != null)
+            {
+                collision.gameObject.GetComponent<PlayerMoviment>().speedBoost(10, 2);
+                collision.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            }
+
             Destroy(gameObject);
         }
     }

@@ -12,10 +12,17 @@ public class Shooting : MonoBehaviour
 
     private float nextFireTime;  // Próximo momento disponível para disparar
 
-    float increseValue;
-
     [SerializeField]
     private GameObject fireRateBar;
+
+    [Header("ShotgunPowerUp")]
+    [SerializeField]
+    private bool hasPowerUp;
+    [SerializeField]
+    private Transform[] shotgunBulletSpawn;
+
+    float increseValue;
+
 
     private void Start()
     {
@@ -46,6 +53,8 @@ public class Shooting : MonoBehaviour
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                     Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
                     bulletRigidbody.velocity = direction.normalized * bulletSpeed;
+
+                    shotgunShoot(hit.point);
                 }
             }
             else
@@ -55,5 +64,36 @@ public class Shooting : MonoBehaviour
                 fireRateBar.transform.localScale = new Vector3(fillValue, 0.2f, 0.2f);
             }
         }
+    }
+
+    private void shotgunShoot(Vector3 point)
+    {
+        if(hasPowerUp)
+        {
+            float[] angleDegrees = new float[shotgunBulletSpawn.Length];
+            for(int i = 0; i < angleDegrees.Length; i++)
+            {
+                angleDegrees[i] = 45 * (i + 1);
+                if (i % 2 == 1)
+                {
+                    angleDegrees[i] = angleDegrees[i - 1] * -1;
+                }
+            }
+            int l = 0;
+            foreach (Transform position in shotgunBulletSpawn) 
+            {
+                float angleRadians = angleDegrees[l] * Mathf.Deg2Rad;
+                Vector3 direction = Quaternion.Euler(0, angleDegrees[l], 0) * (point - position.position);
+                GameObject bullet = Instantiate(bulletPrefab, position.position, Quaternion.identity);
+                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+                bulletRigidbody.velocity = direction.normalized * bulletSpeed;
+                l++;
+            }
+        }
+    }
+
+    public void setHasPowerUp(bool powerUp)
+    {
+        hasPowerUp = powerUp;
     }
 }

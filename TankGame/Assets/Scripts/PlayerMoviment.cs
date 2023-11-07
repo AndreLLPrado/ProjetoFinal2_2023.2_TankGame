@@ -7,12 +7,14 @@ public class PlayerMoviment : MonoBehaviour
     private Rigidbody rb;
 
     public float speed;
+    private float aux;
+    private float bonusSpeed, durationBonus;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        speed = GameObject.Find("GameController").GetComponent<GameController>().getPlayerSpeed();
+        aux = speed = GameObject.Find("GameController").GetComponent<GameController>().getPlayerSpeed();
     }
 
     void Update()
@@ -31,5 +33,20 @@ public class PlayerMoviment : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical) * speed;
 
         rb.velocity = movement;
+    }
+
+    public void speedBoost(float bonus, float duration)
+    {
+        bonusSpeed = bonus;
+        durationBonus = duration;
+        StartCoroutine("speedBoosterCoroutine");
+    }
+
+    IEnumerator speedBoosterCoroutine()
+    {
+        Debug.Log("Speed Bonus");
+        speed += bonusSpeed;
+        yield return new WaitForSeconds(durationBonus);
+        speed = aux;
     }
 }

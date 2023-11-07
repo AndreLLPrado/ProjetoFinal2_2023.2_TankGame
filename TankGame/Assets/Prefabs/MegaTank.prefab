@@ -100,7 +100,7 @@ MonoBehaviour:
   points: 1000
   isMegaTank: 1
   dropsPrefabs:
-  - {fileID: 2645147595377517845, guid: 6ade94dacd5a55e4eb7b180b50c58f27, type: 3}
+  - {fileID: 7508683112630294151, guid: dee03306e556aac4f9d1daf83e5ff400, type: 3}
   dropChance: 64000000
   particleSystem: {fileID: 9115916175598321174}
 --- !u!65 &8509560040672774264
@@ -144,7 +144,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 88bf610b17f6ef540849aa57886f3917, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

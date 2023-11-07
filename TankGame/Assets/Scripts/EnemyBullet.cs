@@ -40,6 +40,7 @@ public class EnemyBullet : MonoBehaviour
                 // Debug.Log("Enemy Hit Damage: " + damage.ToString());
                 GameObject.Find("Canvas").GetComponent<SFXPlayer>().PlayerTakeDamageSFXPlay();
                 collision.gameObject.GetComponent<PlayerStatus>().TakeDamage(damage);
+                collision.gameObject.GetComponentInChildren<Shooting>().setHasPowerUp(false);
             }
         }
         hasCollided = true;
