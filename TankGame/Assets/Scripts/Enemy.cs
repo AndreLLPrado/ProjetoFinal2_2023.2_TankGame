@@ -206,6 +206,11 @@ public class Enemy : MonoBehaviour
             readyToShoot = false;
         }
     }
+
+    public int getHP()
+    {
+        return HP;
+    }
     public void playDamageSound()
     {
         // StartCoroutine(playSound());

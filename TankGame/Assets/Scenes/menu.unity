@@ -2916,8 +2916,8 @@ MonoBehaviour:
     - Bensound\r\nextreme action - Bensound\r\n\r\n\r\nsfx\r\narcade 8bit FX - lucadialessandro
     - site:pixabay\r\npowerup? - pixabay - site:pixabay\r\nFire(shot 02) - Pixabay
     - site:pixabay\r\nExplosion, 8-bit, 01 - InspectorJ - site:freesound\r\npowerup
-    07 - MATRIXXX_ - site:freesound\r\nretro taking damage sfx2 - stumpbutt - site:freesound\r\n\r\nfonts\r\nminecraft
-    - dafont.com\r\n"
+    07 - MATRIXXX_ - site:freesound\r\nretro taking damage sfx2 - stumpbutt - site:freesound\r\nretro-explosion-07
+    - matrixxx__ - site:freesound\n\r\nfonts\r\nminecraft - dafont.com\r\n"
 --- !u!222 &1026335280
 CanvasRenderer:
   m_ObjectHideFlags: 0
