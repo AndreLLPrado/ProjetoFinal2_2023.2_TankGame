@@ -8,7 +8,9 @@ public class SpawnPicker : MonoBehaviour
     private Transform[] spawnPoints;
 
     [SerializeField]
-    private GameObject Enemy;
+    private GameObject[] Enemies;
+    [SerializeField]
+    private float seekerChance;
 
     private void Update()
     {
@@ -23,22 +25,37 @@ public class SpawnPicker : MonoBehaviour
 
         if(difficulty > 1)
         {
+            int spawn = 0;
             if(difficulty > 5)
             {
                 difficulty = 5;
             }
 
+            
 
             for (int i = 0; i < difficulty; i++)
             {
+                if (difficulty > 2)
+                {
+                    float test = Random.Range(0, 100);
+
+                    if (test <= seekerChance)
+                    {
+                        spawn = 1;
+                    }
+                    else
+                    {
+                        spawn = 0;
+                    }
+                }
                 int position = Random.Range(0, spawnPoints.Length);
-                Instantiate(Enemy, spawnPoints[position].position, Quaternion.identity);
+                Instantiate(Enemies[spawn], spawnPoints[position].position, Quaternion.identity);
             }
         }
         else
         {
             int position = Random.Range(0, spawnPoints.Length);
-            Instantiate(Enemy, spawnPoints[position].position, Quaternion.identity);
+            Instantiate(Enemies[0], spawnPoints[position].position, Quaternion.identity);
         }
     }
 }

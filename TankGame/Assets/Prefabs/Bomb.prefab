@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fad4be4b6fff848aa9430401db9a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 5
 --- !u!1 &9116682746125090700
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   minIntensity: 1
   maxIntensity: 10
   blimpVelocity: 10
+  invencibleTime: 1
 --- !u!1001 &4810856476049246594
 PrefabInstance:
   m_ObjectHideFlags: 0

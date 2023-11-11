@@ -17,7 +17,7 @@ public class SeekerEnemy : MonoBehaviour
         currentHP = gameObject.GetComponent<Enemy>().getHP();
         if(currentHP <= 0)
         {
-            Instantiate(bombPrefab, transform.position, Quaternion.identity);
+            // Instantiate(bombPrefab, transform.position, Quaternion.identity);
         }
     }
     private void OnCollisionEnter(Collision collision)

@@ -67,8 +67,8 @@ MonoBehaviour:
   points: 200
   isMegaTank: 0
   dropsPrefabs:
-  - {fileID: 2645147595377517845, guid: 6ade94dacd5a55e4eb7b180b50c58f27, type: 3}
-  dropChance: 1e000000
+  - {fileID: 9116682746125090700, guid: ae97b95287fdfe74e86def5cec50eeca, type: 3}
+  dropChance: 64000000
   particleSystem: {fileID: 9038579488639540036}
 --- !u!114 &8494836609064357016
 MonoBehaviour:

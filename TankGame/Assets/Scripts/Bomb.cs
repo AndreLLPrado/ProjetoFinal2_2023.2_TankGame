@@ -22,10 +22,15 @@ public class Bomb : MonoBehaviour
     private float minIntensity, maxIntensity, blimpVelocity;
     private bool blimp;
 
+    [SerializeField]
+    private float invencibleTime;
+    private bool isInvencible;
+
     private BombTrigger bombTrigger;
 
     private void Start()
     {
+        isInvencible = true;
         blimp = false;
         sfx = GetComponent<AudioSource>();
         bombTrigger = GetComponentInChildren<BombTrigger>();
@@ -33,6 +38,15 @@ public class Bomb : MonoBehaviour
 
     private void Update()
     {
+        if (isInvencible)
+        {
+            invencibleTime -= Time.deltaTime;
+
+            if (invencibleTime <= 0f)
+            {
+                isInvencible = false;
+            }
+        }
         duration -= Time.deltaTime;
 
         if(!blimp)
@@ -60,20 +74,23 @@ public class Bomb : MonoBehaviour
 
     private void explode()
     {
-        foreach (GameObject obj in bombTrigger.getInAreaList().ToArray()) 
+        if (!isInvencible)
         {
-            if(obj.tag == "Player")
+            foreach (GameObject obj in bombTrigger.getInAreaList().ToArray()) 
             {
-                obj.GetComponent<PlayerStatus>().TakeDamage(damage);
+                if(obj != null && obj.tag == "Player")
+                {
+                    obj.GetComponent<PlayerStatus>().TakeDamage(damage);
+                }
+                if (obj != null && obj.tag == "Enemy")
+                {
+                    obj.GetComponent<Enemy>().TakeDamage(damage);
+                }
             }
-            if (obj.tag == "Enemy")
-            {
-                obj.GetComponent<Enemy>().TakeDamage(damage);
-            }
-        }
 
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

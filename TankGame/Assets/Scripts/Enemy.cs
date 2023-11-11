@@ -64,6 +64,8 @@ public class Enemy : MonoBehaviour
             {
                 int increaseBonus = difficulty - 5;
                 HP += increaseBonus;
+
+                speed += ((float)increaseBonus * 2f);
             }
 
         }

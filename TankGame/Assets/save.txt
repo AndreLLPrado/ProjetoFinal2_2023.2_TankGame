@@ -3,7 +3,7 @@ score
 bestTime
 328.4298
 cash
-99996549
+99997159
 HP
 15
 speed
