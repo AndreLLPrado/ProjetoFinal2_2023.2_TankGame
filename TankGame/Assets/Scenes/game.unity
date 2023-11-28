@@ -1183,6 +1183,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &171397149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171397150}
+  m_Layer: 5
+  m_Name: LifeBarPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &171397150
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171397149}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 892334597}
+  - {fileID: 983869253}
+  - {fileID: 436742264}
+  - {fileID: 179319337}
+  m_Father: {fileID: 923531711}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -665.2, y: 497.59998}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &171665937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,13 +1327,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179319336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 892334597}
-  m_RootOrder: 2
+  m_Father: {fileID: 171397150}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2235,17 +2275,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436742263}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 892334597}
-  m_RootOrder: 1
+  m_Father: {fileID: 171397150}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0011444, y: -0.00029468536}
+  m_AnchoredPosition: {x: 0.000061035156, y: -0.00017261505}
   m_SizeDelta: {x: 485.13, y: 56.409}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &436742265
@@ -4453,20 +4493,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892334596}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 983869253}
-  - {fileID: 436742264}
-  - {fileID: 179319337}
-  m_Father: {fileID: 923531711}
-  m_RootOrder: 3
+  m_Children: []
+  m_Father: {fileID: 171397150}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -665.2, y: 497.6}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 485.1284, y: 44.1662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &892334598
@@ -4596,6 +4633,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 783164163}
+        m_TargetAssemblyTypeName: UpgradeMenuController, Assembly-CSharp
+        m_MethodName: loadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1746759214}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: OpenCloseUpgradeStore
@@ -4745,7 +4794,7 @@ RectTransform:
   - {fileID: 1256091411}
   - {fileID: 1337538120}
   - {fileID: 154820835}
-  - {fileID: 892334597}
+  - {fileID: 171397150}
   - {fileID: 783164160}
   - {fileID: 171665940}
   m_Father: {fileID: 0}
@@ -4782,9 +4831,12 @@ MonoBehaviour:
   cashWonText: {fileID: 475698906}
   inGameScoreText: {fileID: 1996494302}
   inGameTimeText: {fileID: 1948354944}
-  lifeBarObject: {fileID: 892334596}
+  lifeBarObject: {fileID: 171397149}
   lifeBar: {fileID: 983869254}
   maxPlayerHP: 0
+  lifeBarBgObj: {fileID: 892334597}
+  lifeBarObj: {fileID: 983869253}
+  lifeBarMolduraObj: {fileID: 436742264}
   megaTankTimer: {fileID: 375165805}
   megaTankTimerPanel: {fileID: 154820834}
   megaTankText: {fileID: 1688131917}
@@ -5223,8 +5275,8 @@ RectTransform:
   m_LocalScale: {x: 1.7204688, y: 1.4249287, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 892334597}
-  m_RootOrder: 0
+  m_Father: {fileID: 171397150}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

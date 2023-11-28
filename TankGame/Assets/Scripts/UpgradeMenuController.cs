@@ -92,7 +92,7 @@ public class UpgradeMenuController : MonoBehaviour
             Debug.Log("Arquivo já existe em: " + filePath);
         }
     }
-    private void loadGame()
+    public void loadGame()
     {
         // Lê o arquivo
         string filePath = Application.dataPath + "/save.txt";

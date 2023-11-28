@@ -53,7 +53,12 @@ public class DisplayController : MonoBehaviour
     private Image lifeBar;
     [SerializeField]
     private int maxPlayerHP;
-    bool playerHasSpawned;
+    [SerializeField]
+    private RectTransform lifeBarBgObj;
+    [SerializeField]
+    private RectTransform lifeBarObj;
+    [SerializeField]
+    private RectTransform lifeBarMolduraObj;
 
     [Header("Mega Tank Timer")]
     [SerializeField]
@@ -144,6 +149,26 @@ public class DisplayController : MonoBehaviour
 
     private void LifeBar()
     {
+        // moldura 1, barra 1.72 - vida máxima
+        // moldura 0.5, barra 0.86 - vida min.
+
+        //bar progression size
+        float normalizedValue = Mathf.Clamp01((maxPlayerHP - 5f) / (15f - 5f));
+        float scale = Mathf.Lerp(0.5f, 1f, normalizedValue);
+        float scaleBar = Mathf.Lerp(0.86f, 1.72f, normalizedValue);
+
+        float pos = Mathf.Lerp(-100f, 0f, normalizedValue);
+        float posBar = Mathf.Lerp(-100f, 0.38f, normalizedValue);
+
+        lifeBarMolduraObj.localScale = new Vector3(scale, 1f, 1f);
+        lifeBarBgObj.localScale = new Vector3(scale, 1f, 1f);
+        lifeBarObj.localScale = new Vector3(scaleBar, 1f, 1f);
+
+        lifeBarMolduraObj.transform.localPosition = new Vector3(pos, 1f, 1f);
+        lifeBarBgObj.transform.localPosition = new Vector3(pos, 1f, 1f);
+        lifeBarObj.transform.localPosition = new Vector3(posBar, 1f, 1f);
+
+        //bar controll
         int acutalHP = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStatus>().getPlayerHP();
         float HP = (float)acutalHP / (float)maxPlayerHP;
 
