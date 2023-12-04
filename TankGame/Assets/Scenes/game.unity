@@ -8059,7 +8059,7 @@ MonoBehaviour:
   Enemies:
   - {fileID: 7302956124505766363, guid: bb9828f40aa239643bdd7d90202782b8, type: 3}
   - {fileID: 1456912316675991343, guid: 7bd9ce52268a71b46849b7e79fd80a26, type: 3}
-  seekerChance: 50
+  seekerChance: 33
 --- !u!4 &1751967344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74d9246f8bc6d7d4caa24a1e7a1b2647, type: 3}
